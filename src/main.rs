@@ -22,11 +22,27 @@ define_class!(
             let mtm = self.mtm();
             let app = NSApplication::sharedApplication(mtm);
 
-            // Set as accessory (menu bar item only, no dock icon)
-            app.setActivationPolicy(NSApplicationActivationPolicy::Accessory);
+            // Set as Regular application to show system Main Menu Bar (文件, 查看, 窗口, 帮助)
+            app.setActivationPolicy(NSApplicationActivationPolicy::Regular);
 
             let cfg = config::Config::default();
             menu::setup_menu_bar(mtm, &cfg);
+
+            let usage = codex::fetch_codex_usage();
+            window::open_or_update_dashboard(mtm, &usage);
+
+            #[allow(deprecated)]
+            app.activateIgnoringOtherApps(true);
+        }
+
+        #[unsafe(method(applicationShouldHandleReopen:hasVisibleWindows:))]
+        fn application_should_handle_reopen(&self, _app: &NSApplication, has_visible_windows: bool) -> bool {
+            if !has_visible_windows {
+                let mtm = self.mtm();
+                let usage = codex::fetch_codex_usage();
+                window::open_or_update_dashboard(mtm, &usage);
+            }
+            true
         }
     }
 );

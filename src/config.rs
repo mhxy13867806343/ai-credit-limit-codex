@@ -80,3 +80,33 @@ pub fn get_codex_home_dir() -> Option<PathBuf> {
 
     None
 }
+
+/// Check if Codex desktop application is installed
+pub fn is_codex_desktop_app_installed() -> bool {
+    let candidates = [
+        "/Applications/Codex.app",
+        "/Applications/ChatGPT.app",
+    ];
+    for c in candidates {
+        if std::path::Path::new(c).exists() {
+            return true;
+        }
+    }
+    if let Ok(home) = std::env::var("HOME") {
+        let user_app = format!("{}/Applications/Codex.app", home);
+        if std::path::Path::new(&user_app).exists() {
+            return true;
+        }
+    }
+    false
+}
+
+/// Check if Codex CLI executable is installed
+pub fn is_codex_cli_installed() -> bool {
+    find_codex_bin().is_some()
+}
+
+/// Check if any Codex environment (App or CLI) is installed
+pub fn is_codex_installed() -> bool {
+    is_codex_desktop_app_installed() || is_codex_cli_installed()
+}

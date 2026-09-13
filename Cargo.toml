@@ -20,6 +20,9 @@ objc2-app-kit = { version = "0.3", features = [
     "NSTextField",
     "NSView",
     "NSWindow",
+    "NSScrollView",
+    "NSClipView",
+    "NSScroller",
 ] }
 objc2-foundation = { version = "0.3", features = [
     "NSDate",
