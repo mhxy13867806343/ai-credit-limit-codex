@@ -1,6 +1,7 @@
 mod codex;
 mod config;
 mod menu;
+mod window;
 
 use objc2::rc::Retained;
 use objc2::runtime::ProtocolObject;
