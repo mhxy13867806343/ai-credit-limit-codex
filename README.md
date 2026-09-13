@@ -39,10 +39,10 @@
 
 本项目已提供即开即用的 DMG 与 ZIP 预打包文件，无需任何编译环境即可直接安装使用：
 
-| 文件 | 格式 | 说明 | 下载/路径 |
+| 文件 | 格式 | 说明 | 下载 / Download |
 | :--- | :--- | :--- | :--- |
-| **Codex-Monitor-macOS.dmg** | macOS DMG 镜像 | **推荐**。双击挂载后将 App 拖入 Applications 目录 | [dist/Codex-Monitor-macOS.dmg](dist/Codex-Monitor-macOS.dmg) |
-| **Codex-Monitor-macOS.zip** | ZIP 压缩包 | 解压后即可直接双击运行 `Codex Monitor.app` | [dist/Codex-Monitor-macOS.zip](dist/Codex-Monitor-macOS.zip) |
+| **Codex-Monitor-macOS.dmg** | macOS DMG 镜像 | **推荐**。双击挂载后将 App 拖入 Applications 目录 | [⬇️ 点击下载 DMG (v0.1.0)](https://github.com/mhxy13867806343/ai-credit-limit-codex/releases/download/v0.1.0/Codex-Monitor-macOS.dmg) |
+| **Codex-Monitor-macOS.zip** | ZIP 压缩包 | 解压后即可直接双击运行 `Codex Monitor.app` | [⬇️ 点击下载 ZIP (v0.1.0)](https://github.com/mhxy13867806343/ai-credit-limit-codex/releases/download/v0.1.0/Codex-Monitor-macOS.zip) |
 
 > **安装提示**：首次打开如遇 macOS 安全提示，可在系统「设置」->「隐私与安全性」中点击「仍要打开」，或在终端执行 `xattr -cr "/Applications/Codex Monitor.app"` 即可正常启动。
 

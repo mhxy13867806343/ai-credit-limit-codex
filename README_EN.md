@@ -39,10 +39,10 @@
 
 Pre-built ready-to-run installation packages are provided directly in the repository:
 
-| File | Format | Description | Download / Path |
+| File | Format | Description | Download |
 | :--- | :--- | :--- | :--- |
-| **Codex-Monitor-macOS.dmg** | macOS DMG Disk Image | **Recommended**. Mount and drag `Codex Monitor.app` to `/Applications` | [dist/Codex-Monitor-macOS.dmg](dist/Codex-Monitor-macOS.dmg) |
-| **Codex-Monitor-macOS.zip** | ZIP Archive | Extract and launch `Codex Monitor.app` directly | [dist/Codex-Monitor-macOS.zip](dist/Codex-Monitor-macOS.zip) |
+| **Codex-Monitor-macOS.dmg** | macOS DMG Disk Image | **Recommended**. Mount and drag `Codex Monitor.app` to `/Applications` | [⬇️ Download DMG (v0.1.0)](https://github.com/mhxy13867806343/ai-credit-limit-codex/releases/download/v0.1.0/Codex-Monitor-macOS.dmg) |
+| **Codex-Monitor-macOS.zip** | ZIP Archive | Extract and launch `Codex Monitor.app` directly | [⬇️ Download ZIP (v0.1.0)](https://github.com/mhxy13867806343/ai-credit-limit-codex/releases/download/v0.1.0/Codex-Monitor-macOS.zip) |
 
 > **Security Note**: If macOS displays an unidentified developer warning on first launch, open System Settings -> Privacy & Security and click "Open Anyway", or run `xattr -cr "/Applications/Codex Monitor.app"` in your terminal.
 
