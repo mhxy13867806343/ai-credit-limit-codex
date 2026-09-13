@@ -19,6 +19,22 @@
 
 ---
 
+## 📸 Screenshots & UI Preview
+
+<p align="center">
+  <img src="assets/dashboard.png" alt="Codex Monitor Panoramic Dashboard" width="760" />
+  <br>
+  <em>Native Panoramic Dashboard: Metrics, Rate limit pills, GitHub-style Heatmap & codex-resets.com reset tracking</em>
+</p>
+
+<p align="center">
+  <img src="assets/menu.png" alt="Codex Monitor Menu Bar & Tray" width="380" />
+  <br>
+  <em>Native Menu Bar Tray with 15s Throttle Cooldown</em>
+</p>
+
+---
+
 ## 📥 Download & Install (macOS)
 
 Pre-built ready-to-run installation packages are provided directly in the repository:

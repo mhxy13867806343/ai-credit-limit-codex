@@ -19,6 +19,22 @@
 
 ---
 
+## 📸 界面预览
+
+<p align="center">
+  <img src="assets/dashboard.png" alt="Codex Monitor 全景用量监控看板" width="760" />
+  <br>
+  <em>原生全景监控面板：指标卡、速率胶囊条、GitHub 风格热力图与 codex-resets.com 重置追踪</em>
+</p>
+
+<p align="center">
+  <img src="assets/menu.png" alt="Codex Monitor 菜单栏与快捷托盘" width="380" />
+  <br>
+  <em>原生菜单栏常驻托盘与 15 秒冷却刷新</em>
+</p>
+
+---
+
 ## 📥 下载与安装 (macOS)
 
 本项目已提供即开即用的 DMG 与 ZIP 预打包文件，无需任何编译环境即可直接安装使用：
