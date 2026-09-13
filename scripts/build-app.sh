@@ -4,8 +4,9 @@ set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$DIR"
 
-echo "==> Building optimized release binary..."
-cargo build --release
+if [ ! -f "$DIR/target/release/codex-monitor" ]; then
+    cargo build --release
+fi
 
 APP_NAME="Codex Monitor.app"
 APP_DIR="$DIR/target/$APP_NAME"
