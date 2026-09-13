@@ -81,8 +81,35 @@ pub fn fetch_codex_usage() -> CodexUsage {
     } else {
         fetch_via_auth_file().unwrap_or_default()
     };
+    if usage.top_models.is_empty() {
+        let (top_models, sqlite_daily, reasoning, total_threads) = super::analytics::fetch_sqlite_analytics();
+        if !top_models.is_empty() { usage.top_models = top_models; }
+        if let Some(r) = reasoning { usage.most_used_reasoning = Some(r); }
+        if total_threads > 0 { usage.total_threads = Some(total_threads); }
+        if usage.daily_buckets.is_empty() && !sqlite_daily.is_empty() {
+            usage.daily_buckets = sqlite_daily;
+        }
+    }
+    if usage.updated_at.is_empty() {
+        usage.updated_at = current_local_time_str();
+    }
     if let Some(gr) = fetch_global_reset_status() {
         usage.global_reset = Some(gr);
     }
     usage
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_fetch_codex_usage() {
+        crate::config::ensure_gui_app_path();
+        let u = fetch_codex_usage();
+        println!("User: {:?}", u.user_display_name);
+        println!("Tokens: {:?}", u.lifetime_tokens);
+        println!("Rate limit: {:?}%", u.primary_percent);
+        assert!(u.lifetime_tokens > Some(0));
+    }
 }

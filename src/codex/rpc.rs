@@ -83,9 +83,13 @@ pub fn populate_from_rate_limits(usage: &mut CodexUsage, res: &GetAccountRateLim
 }
 
 pub fn fetch_via_app_server(codex_bin: &std::path::Path) -> Result<CodexUsage, String> {
+    let cur_path = std::env::var("PATH").unwrap_or_default();
+    let cur_home = std::env::var("HOME").unwrap_or_default();
     let mut child = Command::new(codex_bin)
         .arg("app-server")
         .arg("--stdio")
+        .env("PATH", cur_path)
+        .env("HOME", cur_home)
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
@@ -97,13 +101,17 @@ pub fn fetch_via_app_server(codex_bin: &std::path::Path) -> Result<CodexUsage, S
     let mut reader = BufReader::new(stdout);
 
     let _ = rpc_call(&mut stdin, &mut reader, 1, "initialize", serde_json::json!({"clientInfo":{"name":"codex-monitor","version":"0.1.0"}}))?;
-    let rate_resp = rpc_call(&mut stdin, &mut reader, 2, "account/rateLimits/read", serde_json::Value::Null)?;
+    let notif = serde_json::json!({"jsonrpc":"2.0","method":"initialized","params":{}});
+    let _ = writeln!(stdin, "{}", serde_json::to_string(&notif).unwrap_or_default());
+    let _ = stdin.flush();
+
+    let rate_resp = rpc_call(&mut stdin, &mut reader, 2, "account/rateLimits/read", serde_json::Value::Null).ok();
     let account_resp = rpc_call(&mut stdin, &mut reader, 3, "account/read", serde_json::json!({})).ok();
     let usage_resp = rpc_call(&mut stdin, &mut reader, 4, "account/usage/read", serde_json::json!({})).ok();
     let _ = child.kill();
 
     let mut usage = CodexUsage::default();
-    if let Some(res_val) = rate_resp.get("result") {
+    if let Some(res_val) = rate_resp.as_ref().and_then(|r| r.get("result")) {
         if let Ok(rate_obj) = serde_json::from_value::<GetAccountRateLimitsResponse>(res_val.clone()) {
             populate_from_rate_limits(&mut usage, &rate_obj);
         }

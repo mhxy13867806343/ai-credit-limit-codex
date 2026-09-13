@@ -55,6 +55,7 @@ impl AppDelegate {
 }
 
 fn main() {
+    config::ensure_gui_app_path();
     let mtm = MainThreadMarker::new().expect("Must initialize on the main thread");
     let app = NSApplication::sharedApplication(mtm);
 
